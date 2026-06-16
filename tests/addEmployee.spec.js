@@ -1,13 +1,7 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
+import { test, expect } from "../fixtures/testFixtures";
 import employees from "../test-data/employees.json";
 
-test("Create an Employee", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
-  await page.goto("https://opensource-demo.orangehrmlive.com/");
-
-  const dashboardPage = await loginPage.loginAsAdmin('Admin','admin123');
+test("Create an Employee", async ({ dashboardPage }) => {
 
   const pimPage = await dashboardPage.sidebar.navigateToPIM();
 
@@ -25,3 +19,5 @@ test("Create an Employee", async ({ page }) => {
     employees
   );
 });
+
+
