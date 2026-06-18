@@ -1,6 +1,7 @@
 import { test as base } from '@playwright/test';
 import {LoginPage } from '../pages/LoginPage';
 import { environment } from '../config/environment';
+import { DashboardPage } from '../pages/DashboardPage';
 
 export const test = base.extend({
     dashboardPage: async({page},use) =>{
@@ -8,11 +9,8 @@ export const test = base.extend({
 
         const loginPage = new LoginPage(page);
 
-        const dashboardPage = await loginPage.loginAsAdmin(
-            environment.adminUser.username,
-            environment.adminUser.password
-        );
-
+        const dashboardPage = new DashboardPage(page);
+        
         await dashboardPage.verifyLoaded();
 
         await use(dashboardPage);

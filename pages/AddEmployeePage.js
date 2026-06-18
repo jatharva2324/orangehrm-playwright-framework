@@ -56,6 +56,10 @@ export class AddEmployeePage {
     }
 
     await this.clickSave();
+    console.log(this.page.url());
+    
+    await this.page.waitForURL(/viewPersonalDetails/);
+    //await this.page.waitForLoadState('load');
     const personalDetailsPage = new PersonalDetailsPage(this.page);
 
     await personalDetailsPage.verifyLoaded();
